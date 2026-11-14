@@ -1,53 +1,45 @@
-// Nome do cache - mude se atualizar o site
-const CACHE_NAME = 'meu-pwa-v1';
-
-// Arquivos que serão salvos para usar offline
-const ARQUIVOS_CACHE = [
-    '/',
-    '/index.html',
-    '/manifest.json',
-    '/icon-192.png',
-    '/icon-512.png'
+const CACHE_NAME = 'sql-nexus-v1';
+const urlsToCache = [
+  './index.html',
+  './select.html',
+  './style.css',
+  './script.js',
+  './manifest.json',
+  './icon-192.png',
+  './icon-512.png'
 ];
 
-// Instala o Service Worker e salva os arquivos
+// Instalação do Service Worker e cache dos ficheiros
 self.addEventListener('install', event => {
-    event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(cache => {
-                console.log('Arquivos em cache');
-                return cache.addAll(ARQUIVOS_CACHE);
-            })
-    );
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => {
+        return cache.addAll(urlsToCache);
+      })
+  );
 });
 
-// Busca os arquivos do cache (funciona offline)
-self.addEventListener('fetch', event => {
-    event.respondWith(
-        caches.match(event.request)
-            .then(response => {
-                // Se achou no cache, usa ele
-                if (response) {
-                    return response;
-                }
-                // Se não achou, busca da internet
-                return fetch(event.request);
-            })
-    );
-});
-
-// Atualiza o cache quando o Service Worker é atualizado
+// Ativação e limpeza de caches antigas
 self.addEventListener('activate', event => {
-    event.waitUntil(
-        caches.keys().then(cacheNames => {
-            return Promise.all(
-                cacheNames.map(cache => {
-                    if (cache !== CACHE_NAME) {
-                        console.log('Limpando cache antigo:', cache);
-                        return caches.delete(cache);
-                    }
-                })
-            );
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
         })
-    );
+      );
+    })
+  );
+});
+
+// Interceção de requisições para servir a cache offline
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => {
+        return response || fetch(event.request);
+      })
+  );
 });
