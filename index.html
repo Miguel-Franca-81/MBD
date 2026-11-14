@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal SQL - Banco de Dados</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="site">
+        <header id="topo">
+            <h1>Guia Prático de SQL</h1>
+            <p>Material de apoio e exemplos de comandos para Banco de Dados</p>
+        </header>
+
+        <main class="conteudo-home">
+            <aside id="colunesq">
+                <!-- Cabeçalho estilo "MAIN MENU" da imagem -->
+                <div class="menu-header">
+                    <span class="menu-badge">MAIN MENU</span>
+                    <button id="btn-menu-principal" class="btn-hamburguer" aria-label="Abrir ou fechar menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+
+                <!-- Lista de navegação -->
+                <ul id="menuver" class="menu-lista">
+                    <li>
+                        <a href="index.html" class="menu-item-principal">INÍCIO</a>
+                    </li>
+                    <li class="item-dropdown">
+                        <a href="#" id="btn-aula3" class="menu-item-principal toggle-submenu">
+                            <span>AULA 3</span>
+                        </a>
+                        <ul id="submenu-aula3" class="submenu">
+                            <li><a href="select.html#select">→ SELECT</a></li>
+                            <li><a href="select.html#delete">→ DELETE</a></li>
+                            <li><a href="select.html#update">→ UPDATE</a></li>
+                            <li><a href="select.html#show">→ SHOW</a></li>
+                            <li><a href="select.html#alter">→ ALTER</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-item-principal desabilitado">PRÓXIMA AULA</a>
+                    </li>
+                </ul>
+            </aside>
+
+            <section class="boas-vindas">
+                <h2>Bem-vindo ao material de estudo!</h2>
+                <p>Clique em <strong>AULA 3</strong> no menu ao lado para expandir os comandos ou escolha um atalho abaixo.</p>
+                
+                <div class="cards-atalho">
+                    <a href="select.html#select" class="card">
+                        <h4>SELECT & Funções</h4>
+                        <p>Consultas, concatenação, agregação e datas.</p>
+                    </a>
+                    <a href="select.html#update" class="card">
+                        <h4>UPDATE & DELETE</h4>
+                        <p>Atualização e remoção segura de registros.</p>
+                    </a>
+                    <a href="select.html#alter" class="card">
+                        <h4>SHOW & ALTER</h4>
+                        <p>Estruturação e modificação de tabelas.</p>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>         

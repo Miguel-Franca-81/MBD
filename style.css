@@ -1,0 +1,352 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1a1a1a;
+    color: #cccccc;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* ================= MENU SUPERIOR (select.html) ================= */
+nav#inicio {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ff6b35;
+    padding: 12px 20px;
+    z-index: 1000;
+    border-bottom: 2px solid #e51a23;
+}
+
+nav#inicio ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+}
+
+nav#inicio a {
+    display: inline-block;
+    padding: 6px 14px;
+    background-color: #1f242c;
+    color: #e51a23;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border: 1px solid #ffffff;
+    border-bottom: 1px solid #000000;
+    transition: all 0.2s ease;
+}
+
+nav#inicio a:hover,
+nav#inicio a.active {
+    background-color: #e51a23;
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+nav#inicio a.btn-voltar {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* ================= CONTAINER E SEÇÕES (select.html) ================= */
+.container {
+    max-width: 960px;
+    margin: 85px auto 50px auto;
+    padding: 0 20px;
+}
+
+.cabecalho-pagina {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #ff6b35;
+}
+
+.cabecalho-pagina h1 {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+
+.secao-sql {
+    display: none;
+}
+
+.secao-sql.ativa {
+    display: block;
+}
+
+.secao-sql h2 {
+    font-size: 1.7rem;
+    color: #ff6b35;
+    margin-bottom: 20px;
+}
+
+.grupo-comandos {
+    background-color: #1f242c;
+    border: 1px solid #333333;
+    border-top: 3px solid #e51a23;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.grupo-comandos h3 {
+    font-size: 1.15rem;
+    color: #ffffff;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #444444;
+}
+
+.lista-comandos {
+    list-style-position: inside;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.bloco-codigo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000000;
+    border-left: 4px solid #ff6b35;
+    padding: 10px 14px;
+    margin-top: 6px;
+    overflow-x: auto;
+}
+
+.bloco-codigo code {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.95rem;
+    color: #8be9fd;
+}
+
+.btn-copiar {
+    background-color: #1f242c;
+    color: #ffffff;
+    border: 1px solid #666666;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-left: 12px;
+}
+
+.btn-copiar:hover {
+    background-color: #ff6b35;
+    color: #000000;
+    border-color: #ff6b35;
+}
+
+/* ================= PÁGINA INICIAL (index.html) ================= */
+#site {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+#topo {
+    background-color: #1f242c;
+    border-top: 4px solid #ff6b35;
+    border-bottom: 2px solid #e51a23;
+    padding: 30px 20px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+#topo h1 {
+    font-size: 2.2rem;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+#topo p {
+    color: #cccccc;
+}
+
+.conteudo-home {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 25px;
+    align-items: start;
+}
+
+/* ================= MENU ESTILO DA IMAGEM COM CORES DO ARQUIVO ================= */
+#colunesq {
+    background-color: #0d0d0d;
+    border: 1px solid #333333;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Barra superior "MAIN MENU" + Ícone Hambúrguer */
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #111111;
+    padding: 14px 16px;
+    border-bottom: 1px solid #222222;
+}
+
+.menu-badge {
+    border: 1px solid #444444;
+    color: #ffffff;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    padding: 6px 12px;
+    font-weight: bold;
+}
+
+.btn-hamburguer {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 4px;
+}
+
+.btn-hamburguer span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background-color: #ffffff;
+    transition: 0.2s;
+}
+
+.btn-hamburguer:hover span {
+    background-color: #ff6b35;
+}
+
+/* Lista principal do menu */
+#menuver {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+}
+
+#menuver.recolhido {
+    display: none;
+}
+
+/* Itens principais (faixa avermelhada escura igual à imagem, usando #e51a23 com transparência sobre fundo escuro) */
+.menu-item-principal {
+    display: block;
+    background-color: #26080a;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    padding: 13px 16px;
+    border-bottom: 1px solid #140405;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.menu-item-principal:hover:not(.desabilitado),
+.menu-item-principal.aberto {
+    background-color: #3d0c10;
+    color: #ff6b35;
+}
+
+.menu-item-principal.desabilitado {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Submenu recuado estilo a imagem (faixas cinza-escuras #2b2b2b com seta →) */
+.submenu {
+    list-style: none;
+    display: none;
+    background-color: #0d0d0d;
+    padding-left: 22px; /* Recuo lateral igual ao da imagem */
+}
+
+.submenu.aberto {
+    display: block;
+}
+
+.submenu li a {
+    display: block;
+    background-color: #2b2b2b;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 1.5px;
+    padding: 11px 14px;
+    border-bottom: 1px solid #1a1a1a;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.submenu li a:hover {
+    background-color: #ff6b35;
+    color: #000000;
+    font-weight: bold;
+}
+
+/* ================= ÁREA DE BOAS-VINDAS ================= */
+.boas-vindas {
+    background-color: #1f242c;
+    border: 1px solid #333333;
+    padding: 28px;
+}
+
+.boas-vindas h2 {
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.boas-vindas > p {
+    color: #cccccc;
+    margin-bottom: 22px;
+}
+
+.cards-atalho {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.card {
+    background-color: #1a1a1a;
+    border: 1px solid #444444;
+    border-top: 3px solid #ff6b35;
+    padding: 18px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.card:hover {
+    border-color: #e51a23;
+    transform: translateY(-2px);
+}
+
+.card h4 {
+    color: #ff6b35;
+    margin-bottom: 6px;
+}
+
+.card p {
+    color: #cccccc;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .conteudo-home {
+        grid-template-columns: 1fr;
+    }
+    .container {
+        margin-top: 120px;
+    }
+}

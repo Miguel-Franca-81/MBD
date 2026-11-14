@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comandos SQL - Guia Prático</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav id="inicio">
+        <ul>
+            <li><a href="index.html" class="btn-voltar">⬅ Início</a></li>
+            <li><a href="#select" class="menu-link active">Select</a></li>
+            <li><a href="#delete" class="menu-link">Delete</a></li>
+            <li><a href="#update" class="menu-link">Update</a></li>
+            <li><a href="#show" class="menu-link">Show</a></li>
+            <li><a href="#alter" class="menu-link">Alter</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <header class="cabecalho-pagina"> 
+            <h1>Comandos SQL na Prática</h1>
+            <p>Selecione uma categoria no menu acima para explorar os exemplos de sintaxe.</p>
+        </header>
+
+        <!-- SEÇÃO SELECT -->
+        <section id="select" class="secao-sql ativa"> 
+            <h2>Comandos com SELECT</h2>
+            
+            <div class="grupo-comandos">
+                <h3>Tabela: Alunos & Cursos</h3>
+                <ul class="lista-comandos"> 
+                    <li>
+                        <span class="descricao">Mostrar o nome e o CPF dos alunos (juntos):</span>
+                        <div class="bloco-codigo"><code>SELECT concat(cpf, nome) FROM aluno;</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Mostrar o nome e o telefone com espaço entre os dados:</span>
+                        <div class="bloco-codigo"><code>SELECT concat(nome, ' ', telefone) AS Dados_contato FROM aluno;</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Mostrar os nomes dos alunos com apenas as 5 primeiras letras:</span>
+                        <div class="bloco-codigo"><code>SELECT substr(nome, 1, 5) FROM aluno;</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Medir a quantidade de caracteres do nome:</span>
+                        <div class="bloco-codigo"><code>SELECT length(nome) FROM aluno;</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Trocar valores vazios (NULL) por um texto padrão:</span>
+                        <div class="bloco-codigo"><code>SELECT COALESCE(codigo_dpto, 'Não informado') FROM curso;</code></div>
+                    </li>
+                </ul>
+            </div>
+        
+            <div class="grupo-comandos">    
+                <h3>Tabela: Professores (Agregação e Datas)</h3>
+                <ul class="lista-comandos">
+                    <li>
+                        <span class="descricao">Calcular a média de salário dos professores:</span>
+                        <div class="bloco-codigo"><code>SELECT avg(salario) FROM professor;</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Somar todos os salários dos professores:</span>
+                        <div class="bloco-codigo"><code>SELECT sum(salario) FROM professor;</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Mostrar o maior salário:</span>
+                        <div class="bloco-codigo"><code>SELECT max(salario) FROM professor;</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Mostrar o menor salário:</span>
+                        <div class="bloco-codigo"><code>SELECT min(salario) FROM professor;</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Formatar a data para dia, mês e ano (DD/MM/AA):</span>
+                        <div class="bloco-codigo"><code>SELECT date_format(data_contratacao, '%d/%m/%y') FROM professor;</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Extrair apenas o ano de contratação:</span>
+                        <div class="bloco-codigo"><code>SELECT extract(year FROM data_contratacao) FROM professor;</code></div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="grupo-comandos">
+                <h3>Funções de Data e Hora do Servidor</h3>
+                <ul class="lista-comandos">
+                    <li>
+                        <span class="descricao">Retorna a data atual do servidor:</span>
+                        <div class="bloco-codigo"><code>SELECT CURDATE();</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Retorna o horário atual do sistema:</span>
+                        <div class="bloco-codigo"><code>SELECT CURTIME();</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Retorna a data e a hora atuais do servidor:</span>
+                        <div class="bloco-codigo"><code>SELECT SYSDATE();</code></div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DELETE -->
+        <section id="delete" class="secao-sql">
+            <h2>Exemplos de DELETE</h2>
+        
+            <div class="grupo-comandos"> 
+                <h3>Tabela: Produto</h3>
+                <ul class="lista-comandos">
+                    <li>
+                        <span class="descricao">Remover o produto 'Webcam Full HD':</span>
+                        <div class="bloco-codigo"><code>DELETE FROM tbproduto WHERE NomeProduto = 'Webcam Full HD';</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Excluir um produto pelo código 3:</span>
+                        <div class="bloco-codigo"><code>DELETE FROM tbproduto WHERE Codigo = 3;</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Excluir todos os produtos com preço acima de R$ 3.000:</span>
+                        <div class="bloco-codigo"><code>DELETE FROM tbproduto WHERE Preco > 3000;</code></div>
+                    </li>
+                </ul>    
+            </div>
+
+            <div class="grupo-comandos">    
+                <h3>Tabela: Vendas</h3>
+                <ul class="lista-comandos">
+                    <li>
+                        <span class="descricao">Excluir a venda de código 5:</span>
+                        <div class="bloco-codigo"><code>DELETE FROM tbvenda WHERE Codigo = 5;</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Deletar todas as vendas do Cliente 1:</span>
+                        <div class="bloco-codigo"><code>DELETE FROM tbvenda WHERE CodigoCliente = 1;</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Remover vendas com valor total abaixo de 200:</span>
+                        <div class="bloco-codigo"><code>DELETE FROM tbvenda WHERE ValorTotal &lt; 200;</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Remover a venda feita em 10/08/2024:</span>
+                        <div class="bloco-codigo"><code>DELETE FROM tbvenda WHERE DataVenda = '2024-08-10';</code></div>
+                    </li>
+                </ul>    
+            </div>
+       
+            <div class="grupo-comandos">
+                <h3>Tabela: Funcionários</h3>
+                <ul class="lista-comandos">
+                    <li>
+                        <span class="descricao">Remover o funcionário 'Ricardo Almeida':</span>
+                        <div class="bloco-codigo"><code>DELETE FROM tbfuncionario WHERE NomeFuncionario = 'Ricardo Almeida';</code></div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- SEÇÃO UPDATE -->
+        <section id="update" class="secao-sql"> 
+            <h2>Exemplos de UPDATE</h2>
+       
+            <div class="grupo-comandos"> 
+                <h3>Tabela: Produtos</h3>
+                <ol class="lista-comandos">
+                    <li>
+                        <span class="descricao">Aumentar o preço do Notebook em 10%:</span>
+                        <div class="bloco-codigo"><code>UPDATE tbproduto SET preco = preco * 1.10 WHERE NomeProduto = 'Notebook';</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Atualizar a quantidade em estoque do Mouse Gamer para 60:</span>
+                        <div class="bloco-codigo"><code>UPDATE tbproduto SET Quantidade = 60 WHERE NomeProduto = 'Mouse Gamer';</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Alterar o nome do produto 'SSD 1TB' para 'SSD NVMe 1TB':</span>
+                        <div class="bloco-codigo"><code>UPDATE tbproduto SET NomeProduto = 'SSD NVMe 1TB' WHERE NomeProduto = 'SSD 1TB';</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Dobrar a quantidade de impressoras em estoque:</span>
+                        <div class="bloco-codigo"><code>UPDATE tbproduto SET Quantidade = Quantidade * 2 WHERE NomeProduto = 'Impressora';</code></div>
+                    </li>
+                </ol>               
+            </div>
+        
+            <div class="grupo-comandos">   
+                <h3>Tabela: Funcionários</h3>
+                <ol class="lista-comandos">
+                    <li>
+                        <span class="descricao">Promover Maria Oliveira para o cargo de Supervisora:</span>
+                        <div class="bloco-codigo"><code>UPDATE tbfuncionario SET Cargo = 'Supervisora' WHERE NomeFuncionario = 'Maria Oliveira';</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Atualizar o salário de Felipe Costa para R$ 9.000,00:</span>
+                        <div class="bloco-codigo"><code>UPDATE tbfuncionario SET Salario = 9000.00 WHERE NomeFuncionario = 'Felipe Costa';</code></div>
+                    </li>
+                </ol>
+            </div>
+        
+            <div class="grupo-comandos">
+                <h3>Tabela: Vendas</h3>
+                <ol class="lista-comandos">
+                    <li>
+                        <span class="descricao">Aumentar em 10% o valor de todas as vendas anteriores a 01/03/2024:</span>
+                        <div class="bloco-codigo"><code>UPDATE tbvenda SET ValorTotal = ValorTotal * 1.10 WHERE DataVenda &lt; '2024-03-01';</code></div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- SEÇÃO SHOW -->
+        <section id="show" class="secao-sql">
+            <h2>Exemplos de SHOW e DESC</h2>
+            <div class="grupo-comandos">
+                <ul class="lista-comandos">
+                    <li>
+                        <span class="descricao">Mostrar todos os Bancos de Dados disponíveis:</span>
+                        <div class="bloco-codigo"><code>SHOW DATABASES;</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Mostrar todas as tabelas do Banco de Dados selecionado:</span>
+                        <div class="bloco-codigo"><code>SHOW TABLES;</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Exibir a estrutura/descrição das colunas da tabela aluno:</span>
+                        <div class="bloco-codigo"><code>DESC aluno; -- ou SHOW COLUMNS FROM aluno;</code></div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SEÇÃO ALTER -->
+        <section id="alter" class="secao-sql">
+            <h2>Exemplos de ALTER TABLE</h2>
+            <div class="grupo-comandos">
+                <ul class="lista-comandos">
+                    <li>
+                        <span class="descricao">Inserir uma nova coluna (email) na tabela aluno:</span>
+                        <div class="bloco-codigo"><code>ALTER TABLE aluno ADD email VARCHAR(255);</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Excluir a coluna telefone da tabela professor:</span>
+                        <div class="bloco-codigo"><code>ALTER TABLE professor DROP COLUMN telefone;</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Renomear a tabela departamento para dpto:</span>
+                        <div class="bloco-codigo"><code>ALTER TABLE departamento RENAME TO dpto;</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Alterar o nome da coluna endereco para endereco_residencial:</span>
+                        <div class="bloco-codigo"><code>ALTER TABLE aluno CHANGE endereco endereco_residencial VARCHAR(255);</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Definir a coluna nome como obrigatória (NOT NULL):</span>
+                        <div class="bloco-codigo"><code>ALTER TABLE professor MODIFY nome VARCHAR(255) NOT NULL;</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Adicionar uma chave primária em uma tabela existente:</span>
+                        <div class="bloco-codigo"><code>ALTER TABLE disciplina ADD PRIMARY KEY(codigo);</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Remover a chave primária da tabela:</span>
+                        <div class="bloco-codigo"><code>ALTER TABLE disciplina DROP PRIMARY KEY;</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Modificar a posição da coluna telefone para aparecer logo após o nome:</span>
+                        <div class="bloco-codigo"><code>ALTER TABLE aluno MODIFY telefone VARCHAR(25) AFTER nome;</code></div>
+                    </li>
+                    <li>
+                        <span class="descricao">Adicionar auto-incremento na chave matrícula:</span>
+                        <div class="bloco-codigo"><code>ALTER TABLE professor MODIFY matricula INT AUTO_INCREMENT;</code></div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
